@@ -37,10 +37,10 @@ FROM
     coviddeath
 WHERE
     location LIKE 'Andorra'
-GROUP BY location , population;
+GROUP BY location, population;
 
 
--- select data that we are going to be using
+-- Select data that we are going to be using
 SELECT 
     location,
     date,
@@ -53,7 +53,7 @@ FROM
 ORDER BY 1 , 2; 
 
 -- looking at the total cases vs total deaths 
--- shows the likelihood of dying by covid in india
+-- shows the likelihood of dying by covid in India
 SELECT 
     location,
     date,
@@ -63,11 +63,11 @@ SELECT
 FROM
     coviddeath
 WHERE
-    location LIKE 'india'
-ORDER BY 1 , 2;
+    location LIKE 'India'
+ORDER BY 1, 2;
 
 -- total cases vs population
--- shows percentage of population that got affected by covid
+-- shows the percentage of the population that got affected by covid
 SELECT 
     location,
     date,
@@ -76,9 +76,9 @@ SELECT
     (total_cases / population) * 100 AS covid_perc
 FROM
     coviddeath
-ORDER BY 1 , 2;
+ORDER BY 1, 2;
 
--- highest infection rate countries compared to population
+-- highest infection rate countries compared to the population
 SELECT 
     location,
     MAX(total_cases) AS 'Highest Infection Count',
@@ -86,7 +86,7 @@ SELECT
     MAX((total_cases / population)) * 100 AS 'Percentage of population affected'
 FROM
     coviddeath
-GROUP BY location , population
+GROUP BY location, population
 ORDER BY MAX((total_cases / population)) * 100 DESC;
 
 -- countries with the highest death count per population
@@ -105,7 +105,7 @@ FROM
 GROUP BY continent
 ORDER BY MAX(totaldeaths) DESC;
 
--- gloobal numbers
+-- global numbers
 SELECT 
     date,
     SUM(total_cases) AS total__cases,
@@ -114,4 +114,4 @@ SELECT
 FROM
     coviddeath
 GROUP BY date
-ORDER BY 1 , 2;
+ORDER BY 1, 2;
